@@ -1,0 +1,39 @@
+{
+  "name": "json-groupby",
+  "version": "0.0.0",
+  "description": "Group array of json based on associated properties.",
+  "main": "json-groupby.js",
+  "scripts": {
+    "test": "mocha test/test.js",
+    "build-debug": "browserify json-groupby.js --debug --standalone JSONGroupBy | exorcist dist/json-groupby.js.map > dist/json-groupby.js",
+    "build-min": "browserify json-groupby.js --standalone JSONGroupBy | uglifyjs -c -m > dist/json-groupby.min.js",
+    "build": "npm run build-debug && npm run build-min"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gagan-bansal/json-groupby"
+  },
+  "keywords": [
+    "geojson",
+    "group",
+    "classify",
+    "group-by",
+    "categories",
+    "json"
+  ],
+  "author": "Gagan Bansal <gaganbansal123@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gagan-bansal/json-groupby/issues"
+  },
+  "homepage": "https://github.com/gagan-bansal/json-groupby",
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "chai": "^3.5.0",
+    "dreamjs": "^0.1.5",
+    "exorcist": "^0.4.0",
+    "mocha": "^2.4.5",
+    "uglify-js": "^2.6.1"
+  },
+  "dependencies": {}
+}
