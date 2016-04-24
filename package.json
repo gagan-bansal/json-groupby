@@ -30,10 +30,12 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
-    "dreamjs": "^0.1.5",
     "exorcist": "^0.4.0",
     "mocha": "^2.4.5",
     "uglify-js": "^2.6.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "optionalDependencies": {
+    "chance": "^1.0.2"
+  }
 }

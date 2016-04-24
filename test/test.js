@@ -1,154 +1,224 @@
 var expect = require('chai').expect,
-  groupBy = require('../');
+  groupBy = require('../json-groupby.js'),
+  products =
+    [{"id": 1,
+      "product": "ri", "price": 16, "color": "green", "available": false,
+      "tags": ["bravo"],
+      "vendor": {"name": "Donald Chambers", "address": {"city": "Mumbai"}}},
+     {"id": 2,
+      "product": "foef", "price": 44, "color": "yellow", "available": false,
+      "tags": ["alpha"],
+      "vendor": {"name": "Barbara Garrett", "address": {"city": "Mumbai"}}},
+     {"id": 3,
+      "product": "jehnojto", "price": 29, "color": "red", "available": true,
+      "tags": ["alpha"],
+      "vendor": {"name": "Anne Leonard", "address": {"city": "New York"}}},
+     {"id": 4,
+      "product": "ru", "price": 35, "color": "yellow", "available": false,
+      "tags": ["echo", "charlie", "bravo"],
+      "vendor": {"name": "Justin Doyle", "address": {"city": "London"}}},
+     {"id": 5,
+      "product": "pihluve", "price": 47, "color": "green", "available": true,
+      "tags": ["delta", "echo", "bravo"],
+      "vendor": {"name": "Emily Abbott", "address": {"city": "New York"}}},
+     {"id": 6,
+      "product": "dum", "price": 28, "color": "green", "available": true,
+      "tags": ["echo", "delta", "charlie"],
+      "vendor": {"name": "Henry Peterson", "address": {"city": "New York"}}},
+     {"id": 7,
+      "product": "zifpeza", "price": 10, "color": "green", "available": false,
+      "tags": ["echo", "charlie", "bravo"],
+      "vendor": {"name": "Jesus Lowe", "address": {"city": "Mumbai"}}},
+     {"id": 8,
+      "product": "av", "price": 39, "color": "green", "available": true,
+      "tags": ["bravo"],
+      "vendor": {"name": "Rosalie Erickson", "address": {"city": "New York"}}}];
 describe('groupBy: ', function() {
-  var features = require('./test-data.js').features;
+
   it('single property', function() {
-    var group = groupBy(features, 'properties.color');
-    expect(Object.keys(group))
-      .to.have.members(['yellow','green',  'blue', 'red']);
-    var counts = ['green', 'yellow', 'blue', 'red']
-      .map(function(color) {
-        return group[color].length;
-      })
-    expect(counts).to.deep.equal([3, 7, 4, 6]);
+    expect(groupBy(products, ['color'], ['id'])).to.deep.equal(
+      { green: { id: [ 1, 5, 6, 7, 8 ] },
+        yellow: { id: [ 2, 4 ] },
+        red: { id: [ 3 ] } }
+    )
   });
+
   it('single deep path property', function() {
-    var group = groupBy(features, 'properties.address.city');
-    expect(Object.keys(group))
-      .to.have.members(['London', 'Mumbai', 'New York']);
-    var counts = ['London', 'Mumbai', 'New York']
-      .map(function(color) {
-        return group[color].length;
-      })
-    expect(counts).to.deep.equal([5, 8, 7]);
+    expect(groupBy(products, ['vendor.address.city'], ['id'])).to.deep.equal(
+      { Mumbai: { id: [ 1, 2, 7 ] },
+        'New York': { id: [ 3, 5, 6, 8 ] },
+        London: { id: [ 4 ] } }
+    )
   });
-  it('single boolean property', function() {
-    var group = groupBy(features, 'properties.available');
-    expect(Object.keys(group))
-      .to.have.members(['true', 'false']);
-    var counts = ['true', 'false']
-      .map(function(color) {
-        return group[color].length;
-      })
-    expect(counts).to.deep.equal([11, 9]);
+
+  it('boolean property', function() {
+    expect(groupBy(products, ['available'], ['id'])).to.deep.equal(
+      { false: { id: [ 1, 2, 4, 7 ] }, true: { id: [ 3, 5, 6, 8 ] }}); 
   });
 
   it('lookup of invervals, no intervals\' name', function() {
-    var group = groupBy(features, {
-      property: 'properties.price',
-      intervals: [10000, 30000, 72128, 100000] 
-    });
-    expect(Object.keys(group))
-      .to.have.members(['0', '1', '2']);
-    var counts = ['0', '1', '2'].map(function(key) {
-        return group[key].length;
-      });
-    expect(counts).to.deep.equal([5, 7, 8]);
-    expect(getIntervalVals(group['0'], 'properties.price'))
-      .to.have.members([11085, 12205, 12453, 16622, 26214]);
-    expect(getIntervalVals(group['1'], 'properties.price'))
-      .to.have.members(
-        [30312, 39281, 44766, 52593, 57908, 64813, 67382]
-      );
-    expect(getIntervalVals(group['2'], 'properties.price'))
-      .to.have.members(
-        [72128, 83008, 83076, 89221, 92862, 94245, 95282, 95878]
-      );
+    expect(groupBy(
+      products, 
+      [{property: 'price', intervals: [10,20,40,50]}],
+      ['id']
+    )).to.deep.equal(
+      { '0': { id: [ 1, 7 ] },
+        '1': { id: [ 3, 4, 6, 8 ] },
+        '2': { id: [ 2, 5 ] } }
+    )
   });
 
   it('lookup of invervals, with intervals\' name', function() {
-    var group = groupBy(features, {
-      property: 'properties.price',
-      intervals: [10000, 30000, 72128, 100000],
-      labels: ['low', 'medium', 'high'] 
-    });
-    expect(Object.keys(group))
-      .to.have.members(['low', 'medium', 'high']);
-    var counts = ['low', 'medium', 'high'].map(function(key) {
-        return group[key].length;
-      });
-    expect(counts).to.deep.equal([5, 7, 8]);
+    expect(groupBy(
+      products, 
+      [{
+        property: 'price', 
+        intervals: [10,20,40,50], 
+        labels: ['low','medium','high']}],
+      ['id']
+    )).to.deep.equal(
+      { 'low': { id: [ 1, 7 ] },
+        'medium': { id: [ 3, 4, 6, 8 ] },
+        'high': { id: [ 2, 5 ] } }
+    )
   });
 
   it('two properties 1) lookup of invervals 2) tag/string', function() {
-    var group = groupBy(
-      features, 
+    expect(groupBy(
+      products, 
+      [
+        {
+          property: 'price', 
+          intervals: [10,20,40,50], 
+          labels: ['low','medium','high']
+        },
+        'vendor.address.city'
+      ],
+      ['id']
+    )).to.deep.equal(
       {
-        property: 'properties.price',
-        intervals: [10000, 30000, 72128, 100000], 
-        labels: ['low', 'medium', 'high'] 
-      },
-      'properties.gender'
-    );
-    expect(Object.keys(group))
-      .to.have.members(['low', 'medium', 'high']);
-    expect(group['low']['Male']).is.an('array')
-      .that.to.have.length(1);
-    expect(group['low']['Female']).is.an('array')
-      .that.to.have.length(4);
-    expect(group['medium']['Male']).is.an('array')
-      .that.to.have.length(3);
-    expect(group['medium']['Female']).is.an('array')
-      .that.to.have.length(4);
-    expect(group['high']['Male']).is.an('array')
-      .that.to.have.length(4);
-    expect(group['high']['Female']).is.an('array')
-      .that.to.have.length(4);
+        "low":
+          {"Mumbai":{"id":[1,7]}},
+        "high":
+          {"Mumbai":{"id":[2]},
+          "New York":{"id":[5]}},
+        "medium":
+          {"New York":{"id":[3,6,8]},
+          "London":{"id":[4]}}
+      }
+    )
   });
 
-  it('tag is boolean', function() {
-    var group = groupBy(features, 'properties.available');
-    expect(Object.keys(group))
-      .to.have.members(['true', 'false']);
-    expect(group['true'].length).to.be.equal(11);
-    expect(group['false'].length).to.be.equal(9);
+  it('tags are in array', function() {
+    expect(groupBy(products, ['tags'], ['id'])).to.deep.equal(
+      { bravo: { id: [ 1, 4, 5, 7, 8 ] },
+        alpha: { id: [ 2, 3 ] },
+        echo: { id: [ 4, 5, 6, 7 ] },
+        charlie: { id: [ 4, 6, 7 ] },
+        delta: { id: [ 5, 6 ] } }
+    )
+  })
+
+  it('collect many properties', function() {
+    var group = groupBy(
+      products, 
+      ['color'], 
+      ['vendor.address.city', 'available'])
+    expect(group).to.deep.equal(
+      { green: 
+         { 'vendor.address.city': [ 'Mumbai', 'New York', 'New York', 'Mumbai', 'New York' ],
+           available: [ false, true, true, false, true ] },
+        yellow: 
+         { 'vendor.address.city': [ 'Mumbai', 'London' ],
+           available: [ false, false ] },
+        red: { 'vendor.address.city': [ 'New York' ], available: [ true ] } }
+    )
+  })
+
+  it('single property, without collect option', function() {
+    var group = groupBy(products, ['color']) 
+    expect(group).is.an('Object')
+      .that.to.have.all.keys(['green', 'yellow', 'red'])
+    Object.keys(group).forEach(function(key) {
+      expect(group[key]).is.an('Array')})
+    expect(group['green'].map(function(item){return item.id}))
+      .to.have.members([1, 5, 6, 7, 8])
+    expect(group['yellow'].map(function(item){return item.id}))
+      .to.have.members([2, 4])
+    expect(group['red'].map(function(item){return item.id}))
+      .to.have.members([3])
   });
 
-  it('tags are array', function() {
-    var data = [
-      {labels: ['new', 'premium'], id: 1},
-      {labels: ['premium', 'unique'], id: 2},
-      {labels: ['old', 'unique'], id: 3},
-      {labels: ['accessory'], id: 4}];
-    var group = groupBy(data, 'labels');
-    expect(Object.keys(group))
-      .to.have.members(['new', 'premium', 'unique', 'old', 'accessory']);
-    var counts = ['new', 'premium', 'unique', 'old', 'accessory']
-      .map(function(key) {
-        return group[key].length;
-      });
-    expect(counts).to.deep.equal([1, 2, 2, 1, 1]);
-  });
-  it('features are not modified', function() {
-    var features = [
+  it('many properties, without collect option', function() {
+    var group = groupBy(products, ['available', 'color', 'vendor.address.city'])
+    Object.keys(group).forEach(function(keyLevel1) {
+      expect(group[keyLevel1]).is.an('Object')
+      Object.keys(group[keyLevel1]).forEach(function(keyLevel2) {
+        expect(group[keyLevel1][keyLevel2]).is.an('Object')
+        Object.keys(group[keyLevel1][keyLevel2]).forEach(function(keyLevel3) {
+          expect(group[keyLevel1][keyLevel2][keyLevel3]).is.an('Array')
+        })
+      })
+    })
+    expect(group).to.deep.equal(
+{"false": 
+  {"green": 
+    {"Mumbai": [
+      {"id": 1, "product": "ri", "price": 16, "color": "green", 
+       "available": false, "tags": ["bravo"], 
+       "vendor": {"name": "Donald Chambers",  "address": {"city": "Mumbai"}}},
+      {"id": 7, "product": "zifpeza", "price": 10, "color": "green",
+       "available": false, "tags": ["echo", "charlie", "bravo"],
+       "vendor": {"name": "Jesus Lowe", "address": {"city": "Mumbai"}}}]},
+   "yellow": {
+     "Mumbai": [
+       {"id": 2, "product": "foef", "price": 44, "color": "yellow", 
+        "available": false, "tags": ["alpha"], 
+        "vendor": {"name": "Barbara Garrett",  "address": {"city": "Mumbai"}}}], 
+     "London": [
+       {"id": 4, "product": "ru", "price": 35, "color": "yellow",
+        "available": false, "tags": ["echo", "charlie", "bravo"],
+        "vendor": {"name": "Justin Doyle", "address": {"city": "London"}}}]}},
+ "true": 
+  {"red": 
+    {"New York": [
+      {
+        "id": 3, "product": "jehnojto", "price": 29, "color": "red",
+        "available": true, "tags": ["alpha"],
+        "vendor": {"name": "Anne Leonard", "address": {"city": "New York"}}}]},
+   "green": {
+     "New York": [
+        {"id": 5, "product": "pihluve", "price": 47, "color": "green",
+         "available": true, "tags": ["delta", "echo", "bravo"],
+         "vendor": {"name": "Emily Abbott", "address": {"city": "New York"}}},
+         {"id": 6, "product": "dum", "price": 28, "color": "green",
+         "available": true, "tags": ["echo", "delta", "charlie"],
+         "vendor": {"name": "Henry Peterson", "address": {"city": "New York"}}},
+         {"id": 8, "product": "av", "price": 39, "color": "green",
+         "available": true, "tags": ["bravo"],
+         "vendor": {"name": "Rosalie Erickson", "address": {"city": "New York"}}}
+     ]}}}
+    
+    )
+  })
+
+  it('items are not cloned', function() {
+    var items = [
       {id: 1, geometry: {type: 'Point', coordinates: [1,2]}, 
         properties: {gender: 'Female', price: 11000}},
       {id: 2, geometry: {type: 'Point', coordinates: [11,12]}, 
         properties: {gender: 'Male', price: 10000}}
     ];
-    var group = groupBy(features, 'properties.gender');
-    expect(group['Female'][0]).equal(features[0]);
-    expect(group['Male'][0]).to.equal(features[1]);
+    var group = groupBy(items, ['properties.gender']);
+    expect(group['Female'][0] == items[0]).to.be.true;
+    expect(group['Male'][0] == items[1]).to.be.true;
   });
 
+  it('not a valid proeprty path', function() {
+    expect(
+      function() {
+        groupBy(products, ['vendor.address.zip'], ['id'])
+      }
+    ).to.throw(Error);
+  });
 });
-
-
-function getIntervalVals(features, prop) {
-  return features.reduce(function(acc, f) {
-    acc.push(valueAt(f, prop));
-    return acc;
-  },[])
-}
-function valueAt(obj,path) {
-  //taken from http://stackoverflow.com/a/6394168/713573
-  function index(prev,cur) { return prev[cur]; }
-  return path.split('.').reduce(index, obj);
-};
-function getStats(features, prop) {
-  return features.reduce(function(acc,f) {
-    var key = valueAt(f,prop);
-    acc[key] = acc[key] ? acc[key] + 1 : 1;
-    return acc;
-  },{});
-}

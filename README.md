@@ -1,5 +1,5 @@
 # json-groupby
-Group array of JOSN based on associated properties.
+Group array of JOSN objects based on associated properties.
 ## installation
 
 ```
@@ -8,12 +8,11 @@ npm install json-groupby
 
 ## usage
 ```javascript
-var groupBy = require('json-groupby');
-var group = groupBy(array, property [,property, ...]);
+var groupBy = require('json-groupby')
+var group = groupBy(array, properties [, collect])
 ```
-The function accepts multiple number of properties.
 * **array**  Array of JSON objects
-* **property**  JSON properties' path like `address.city` or lookup object
+* **properties**  Array JSON properties' path like `address.city` or lookup object
 
   **lookup**
   ```
@@ -25,212 +24,197 @@ The function accepts multiple number of properties.
   ``` 
   **intervals** Array of intervals. Like [ 10, 20, 30, 40, 50] group the data in four ranges, whereas lower bound is inclusive and upper bound is exclusive.
 
-  **peroperty** Property path like 'peroperties.color'
+  **peroperty** Property path like `price`
 
   **labels** Array of interval labels like [ 'low', 'medium', 'high']
+
+* **collect** Array of properties that need to be collected in array 
 
 ### examples
 
 ##### data set
 ````javascript
-var features = [
-  {
-    "id": 1, "geometry": "geojson-point",
-    "properties": {"color": "blue","price": 150,"address": {"city": "New York"}}
-  }, {
-    "id": 2, "geometry": "geojson-point",
-    "properties": {"color": "green","price": 200,"address": {"city": "London"}}
-  }, {
-    "id": 3, "geometry": "geojson-point",
-    "properties": {"color": "red","price": 210,"address": {"city": "London"}}
-  }, {
-    "id": 4, "geometry": "geojson-point",
-    "properties": {"color": "red","price": 280,"address": {"city": "New York"}}
-  }, {
-    "id": 5, "geometry": "geojson-point",
-    "properties": {"color": "green","price": 300,"address": {"city": "New York"}}
-  }, {
-    "id": 6, "geometry": "geojson-point",
-    "properties": {"color": "red","price": 360,"address": {"city": "Mumbai"}}
-  }, {
-    "id": 7, "geometry": "geojson-point",
-    "properties": {"color": "yellow","price": 400,"address": {"city": "New York"}}
-  }, {
-    "id": 8, "geometry": "geojson-point",
-    "properties": {"color": "yellow","price": 410,"address": {"city": "Mumbai"}}
-  }
-];
+var products = 
+ [{"id": 1,
+   "product": "ri", "price": 16, "color": "green", "available": false,
+   "tags": ["bravo"],
+   "vendor": {"name": "Donald Chambers", "address": {"city": "Mumbai"}}},
+  {"id": 2,
+   "product": "foef", "price": 44, "color": "yellow", "available": false,
+   "tags": ["alpha"],
+   "vendor": {"name": "Barbara Garrett", "address": {"city": "Mumbai"}}},
+  {"id": 3,
+   "product": "jehnojto", "price": 29, "color": "red", "available": true,
+   "tags": ["alpha"],
+   "vendor": {"name": "Anne Leonard", "address": {"city": "New York"}}},
+  {"id": 4,
+   "product": "ru", "price": 35, "color": "yellow", "available": false,
+   "tags": ["echo", "charlie", "bravo"],
+   "vendor": {"name": "Justin Doyle", "address": {"city": "London"}}},
+  {"id": 5,
+   "product": "pihluve", "price": 47, "color": "green", "available": true,
+   "tags": ["delta", "echo", "bravo"],
+   "vendor": {"name": "Emily Abbott", "address": {"city": "New York"}}},
+  {"id": 6,
+   "product": "dum", "price": 28, "color": "green", "available": true,
+   "tags": ["echo", "delta", "charlie"],
+   "vendor": {"name": "Henry Peterson", "address": {"city": "New York"}}},
+  {"id": 7,
+   "product": "zifpeza", "price": 10, "color": "green", "available": false,
+   "tags": ["echo", "charlie", "bravo"],
+   "vendor": {"name": "Jesus Lowe", "address": {"city": "Mumbai"}}},
+  {"id": 8,
+   "product": "av", "price": 39, "color": "green", "available": true,
+   "tags": ["bravo"],
+   "vendor": {"name": "Rosalie Erickson", "address": {"city": "New York"}}}]
 ```
 
 ##### group by single property
 ```javascript
-groupBy(features, 'properties.color')
-// output as
-{ blue: 
-   [ { id: 1,
-       geometry: 'geojson-point',
-       properties: { color: 'blue', price: 150, address: { city: 'New York' } } } ],
-  green: 
-   [ { id: 2,
-       geometry: 'geojson-point',
-       properties: { color: 'green', price: 200, address: { city: 'London' } } },
-     { id: 5,
-       geometry: 'geojson-point',
-       properties: { color: 'green', price: 300, address: { city: 'New York' } } } ],
-  red: 
-   [ { id: 3,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 210, address: { city: 'London' } } },
-     { id: 4,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 280, address: { city: 'New York' } } },
-     { id: 6,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 360, address: { city: 'Mumbai' } } } ],
-  yellow: 
-   [ { id: 7,
-       geometry: 'geojson-point',
-       properties: { color: 'yellow', price: 400, address: { city: 'New York' } } },
-     { id: 8,
-       geometry: 'geojson-point',
-       properties: { color: 'yellow', price: 410, address: { city: 'Mumbai' } } } ] }
+groupBy(products, ['color'], ['id'])
+// output is 
+{ green: { id: [ 1, 5, 6, 7, 8 ] },
+  yellow: { id: [ 2, 4 ] },
+  red: { id: [ 3 ] } }
 ```
-##### group by intervals
+
+##### group by many properties and without collect option
 ```javascript
-groupBy(features, {
-  intervals: [100, 200, 300, 500],
-  property: 'properties.price'
-})
-// output as
-{ '0': 
-   [ { id: 1,
-       geometry: 'geojson-point',
-       properties: { color: 'blue', price: 150, address: { city: 'New York' } } } ],
-  '1': 
-   [ { id: 2,
-       geometry: 'geojson-point',
-       properties: { color: 'green', price: 200, address: { city: 'London' } } },
-     { id: 3,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 210, address: { city: 'London' } } },
-     { id: 4,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 280, address: { city: 'New York' } } } ],
-  '2': 
-   [ { id: 5,
-       geometry: 'geojson-point',
-       properties: { color: 'green', price: 300, address: { city: 'New York' } } },
-     { id: 6,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 360, address: { city: 'Mumbai' } } },
-     { id: 7,
-       geometry: 'geojson-point',
-       properties: { color: 'yellow', price: 400, address: { city: 'New York' } } },
-     { id: 8,
-       geometry: 'geojson-point',
-       properties: { color: 'yellow', price: 410, address: { city: 'Mumbai' } } } ] }
-```
-##### group by intervals and labeling intervals
+groupBy(products, ['available', 'color', 'vendor.address.city'])
+// output is 
+{"false": 
+  {"green": 
+    {"Mumbai": [
+      {"id": 1, "product": "ri", "price": 16, "color": "green", 
+       "available": false, "tags": ["bravo"], 
+       "vendor": {"name": "Donald Chambers",  "address": {"city": "Mumbai"}}},
+      {"id": 7, "product": "zifpeza", "price": 10, "color": "green",
+       "available": false, "tags": ["echo", "charlie", "bravo"],
+       "vendor": {"name": "Jesus Lowe", "address": {"city": "Mumbai"}}}]},
+   "yellow": {
+     "Mumbai": [
+       {"id": 2, "product": "foef", "price": 44, "color": "yellow", 
+        "available": false, "tags": ["alpha"], 
+        "vendor": {"name": "Barbara Garrett",  "address": {"city": "Mumbai"}}}], 
+     "London": [
+       {"id": 4, "product": "ru", "price": 35, "color": "yellow",
+        "available": false, "tags": ["echo", "charlie", "bravo"],
+        "vendor": {"name": "Justin Doyle", "address": {"city": "London"}}}]}},
+ "true": 
+  {"red": 
+    {"New York": [
+      {
+        "id": 3, "product": "jehnojto", "price": 29, "color": "red",
+        "available": true, "tags": ["alpha"],
+        "vendor": {"name": "Anne Leonard", "address": {"city": "New York"}}}]},
+   "green": {
+     "New York": [
+        {"id": 5, "product": "pihluve", "price": 47, "color": "green",
+         "available": true, "tags": ["delta", "echo", "bravo"],
+         "vendor": {"name": "Emily Abbott", "address": {"city": "New York"}}},
+         {"id": 6, "product": "dum", "price": 28, "color": "green",
+         "available": true, "tags": ["echo", "delta", "charlie"],
+         "vendor": {"name": "Henry Peterson", "address": {"city": "New York"}}},
+         {"id": 8, "product": "av", "price": 39, "color": "green",
+         "available": true, "tags": ["bravo"],
+         "vendor": {"name": "Rosalie Erickson", "address": {"city": "New York"}}}
+     ]}}}
+``` 
+
+##### single deep path property 
 ```javascript
-groupBy(features, {
-  intervals: [100, 200, 300, 500],
-  property: 'properties.price',
-  labels: ['low', 'medium', 'high']
-})
-// output as
-{ low: 
-   [ { id: 1,
-       geometry: 'geojson-point',
-       properties: { color: 'blue', price: 150, address: { city: 'New York' } } } ],
-  medium: 
-   [ { id: 2,
-       geometry: 'geojson-point',
-       properties: { color: 'green', price: 200, address: { city: 'London' } } },
-     { id: 3,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 210, address: { city: 'London' } } },
-     { id: 4,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 280, address: { city: 'New York' } } } ],
-  high: 
-   [ { id: 5,
-       geometry: 'geojson-point',
-       properties: { color: 'green', price: 300, address: { city: 'New York' } } },
-     { id: 6,
-       geometry: 'geojson-point',
-       properties: { color: 'red', price: 360, address: { city: 'Mumbai' } } },
-     { id: 7,
-       geometry: 'geojson-point',
-       properties: { color: 'yellow', price: 400, address: { city: 'New York' } } },
-     { id: 8,
-       geometry: 'geojson-point',
-       properties: { color: 'yellow', price: 410, address: { city: 'Mumbai' } } } ] }
-```
-##### group by intervals and another property
+groupBy(products, ['vendor.address.city'], ['id'])
+// output is 
+{ Mumbai: { id: [ 1, 2, 7 ] },
+  'New York': { id: [ 3, 5, 6, 8 ] },
+  London: { id: [ 4 ] } }
+```   
+##### group with boolean property
+```javascript
+groupBy(products, ['available'], ['id'])
+// output is 
+{ false: { id: [ 1, 2, 4, 7 ] }, 
+  true: { id: [ 3, 5, 6, 8 ] }}
+```  
+
+##### group by intervals (lookup of intervals) without intervals' name
+```javascript 
+groupBy(
+  products, 
+  [{property: 'price', intervals: [10,20,40,50]}],
+  ['id'])
+//output is 
+{ '0': { id: [ 1, 7 ] },
+  '1': { id: [ 3, 4, 6, 8 ] },
+  '2': { id: [ 2, 5 ] } }
+``` 
+
+##### group by intervals (lookup of intervals) with intervals' lable name 
 ```javascript
 groupBy(
-  features, 
-  {
-    intervals: [100, 200, 300, 500],
-    property: 'properties.price',
-    labels: ['low', 'medium', 'high']
-  },
-  'properties.address.city'
-)
-// output as
-{ low: 
-   { 'New York': 
-      [ { id: 1,
-          geometry: 'geojson-point',
-          properties: { color: 'blue', price: 150, address: { city: 'New York' } } } ] },
-  medium: 
-   { London: 
-      [ { id: 2,
-          geometry: 'geojson-point',
-          properties: { color: 'green', price: 200, address: { city: 'London' } } },
-        { id: 3,
-          geometry: 'geojson-point',
-          properties: { color: 'red', price: 210, address: { city: 'London' } } } ],
-     'New York': 
-      [ { id: 4,
-          geometry: 'geojson-point',
-          properties: { color: 'red', price: 280, address: { city: 'New York' } } } ] },
-  high: 
-   { 'New York': 
-      [ { id: 5,
-          geometry: 'geojson-point',
-          properties: { color: 'green', price: 300, address: { city: 'New York' } } },
-        { id: 7,
-          geometry: 'geojson-point',
-          properties: { color: 'yellow', price: 400, address: { city: 'New York' } } } ],
-     Mumbai: 
-      [ { id: 6,
-          geometry: 'geojson-point',
-          properties: { color: 'red', price: 360, address: { city: 'Mumbai' } } },
-        { id: 8,
-          geometry: 'geojson-point',
-          properties: { color: 'yellow', price: 410, address: { city: 'Mumbai' } } } ] } }
+  products, 
+  [{
+    property: 'price', 
+    intervals: [10,20,40,50], 
+    labels: ['low','medium','high']}],
+  ['id'])
+//ouptu is 
+{'low': { id: [ 1, 7 ] },
+ 'medium': { id: [ 3, 4, 6, 8 ] },
+ 'high': { id: [ 2, 5 ] } }
 ```
-##### group by property that value is an array of tags
+##### group with mixed properties lookup and property path 
 ```javascript
-var features = [
-  {labels: ['new', 'premium'], id: 1},
-  {labels: ['premium', 'unique'], id: 2},
-  {labels: ['old', 'unique'], id: 3},
-  {labels: ['accessory'], id: 4}];
-groupBy(features, 'labels')
-// output as
-{ new: [ { labels: [ 'new', 'premium' ], id: 1 } ],
-  premium: 
-   [ { labels: [ 'new', 'premium' ], id: 1 },
-     { labels: [ 'premium', 'unique' ], id: 2 } ],
-  unique: 
-   [ { labels: [ 'premium', 'unique' ], id: 2 },
-     { labels: [ 'old', 'unique' ], id: 3 } ],
-  old: [ { labels: [ 'old', 'unique' ], id: 3 } ],
-  accessory: [ { labels: [ 'accessory' ], id: 4 } ] }
+groupBy(
+  products, 
+  [
+    {
+      property: 'price', 
+      intervals: [10,20,40,50], 
+      labels: ['low','medium','high']
+    },
+    'vendor.address.city'
+  ],
+  ['id'])
+// output is
+{
+  "low":
+    {"Mumbai":{"id":[1,7]}},
+  "high":
+    {"Mumbai":{"id":[2]},
+    "New York":{"id":[5]}},
+  "medium":
+    {"New York":{"id":[3,6,8]},
+    "London":{"id":[4]}}
 ```
-  
+
+##### group by tags that are in array 
+```javascript
+groupBy(products, ['tags'], ['id'])
+//ouput is
+{ bravo: { id: [ 1, 4, 5, 7, 8 ] },
+  alpha: { id: [ 2, 3 ] },
+  echo: { id: [ 4, 5, 6, 7 ] },
+  charlie: { id: [ 4, 6, 7 ] },
+  delta: { id: [ 5, 6 ] } }
+```
+
+##### group and collect many properties
+```javascript
+groupBy(
+  products, 
+  ['color'], 
+  ['vendor.address.city', 'available'])
+// output is
+{ green: 
+   { 'vendor.address.city': [ 'Mumbai', 'New York', 'New York', 'Mumbai', 'New York' ],
+     available: [ false, true, true, false, true ] },
+  yellow: 
+   { 'vendor.address.city': [ 'Mumbai', 'London' ],
+     available: [ false, false ] },
+  red: { 'vendor.address.city': [ 'New York' ], available: [ true ] } }
+```
+
 ## developing
 Once you run
  

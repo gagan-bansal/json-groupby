@@ -1,30 +1,30 @@
 'use strict';
 
-function groupBy() {
-  if (arguments.length < 2) return;
-  var args, features, properties;
-  // get args as array 
-  // http://stackoverflow.com/a/15705938/713573
-  args = Array.prototype.slice.call(arguments, 0);
+function groupBy(items, properties, collect) {
+  if (arguments.length < 2) return arr;
+  var groups = _groupBy(items, properties);
+  // collect other properties values in array
+  if (collect && collect.length > 0)
+    groups = collectProperties(groups, collect);
 
-  var features = Array.isArray(args[0]) ? args[0] : args[0].features;
-  var properties = args.slice(1);
-  return properties.reduce(function(group, prop, i, arr) {
-    if (Object.keys(group).length > 0) {
+  return groups;
+}
+
+function _groupBy(items, properties) {
+  debugger;
+  var group = {};
+ 	    if (typeof properties[0] === 'string') {
+ 	      group = groupByCategory(items, properties[0]);
+ 	    } else {
+ 	      group = groupByRange(items, properties[0]);
+ 	    }
+      properties = properties.slice(1);
+    if (properties.length > 0) {
       for (var key in group) {
-        group[key] = groupBy.apply(null,
-          [group[key]].concat(arr.slice(i))
-        );
+        group[key] = _groupBy(group[key], properties);
       }
-    } else {
-	    if (typeof prop === 'string') {
-	      group = groupByCategory(features, prop);
-	    } else {
-	      group = groupByRange(features, prop);
-	    }
     }
     return group;
-  },{});
 }
 
 function groupByCategory(arr, prop) {
@@ -53,6 +53,7 @@ function groupByRange(arr, lookup) {
     var val, ind, tag;
     val = valueAt(f, lookup.property);
     ind = locationOf(val, lookup.intervals);
+    if (ind === lookup.intervals.length -1) ind--;
     tag = lookup.labels ? lookup.labels[ind] : ind;
     group[tag] = group[tag] || [];
     group[tag].push(f);
@@ -60,13 +61,32 @@ function groupByRange(arr, lookup) {
   },{});
 }
 
+// collect the properties in an array 
+function collectProperties(groups, properties) { 
+  var collection = {};
+  for (var key in groups) {
+    if (Array.isArray(groups[key])) {
+      collection[key] = groups[key].reduce(function(coll, item) {
+        properties.forEach(function(prop) { 
+          if (!coll[prop]) coll[prop] = [];
+          coll[prop].push(valueAt(item,prop));
+        })
+        return coll;
+      }, {})
+    } else {
+      collection[key] = collectProperties(groups[key], properties);
+    }
+  }
+  return collection;
+}
+
 function valueAt(obj,path) {
   //taken from http://stackoverflow.com/a/6394168/713573
-  function index(prev,cur) { 
-    try {
+  function index(prev,cur, i, arr) { 
+    if (prev.hasOwnProperty(cur)) {
       return prev[cur]; 
-    } catch(e) {
-      throw new Error('Path "'+path+ '" is not valid in '+ JSON.stringify(obj)); 
+    } else {
+      throw new Error(arr.slice(0,i+1).join('.') + ' is not a valid property path'); 
     }
   }
   return path.split('.').reduce(index, obj);

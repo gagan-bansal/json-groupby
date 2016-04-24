@@ -1,76 +1,28 @@
-var dream = require('dreamjs');
-dream.customType('incrementalId', function(helper){
-  return helper.previousItem ? helper.previousItem.id+1 : 1;
-});
+var Chance = require('chance')
+var chance = new Chance();
 
-dream.customType('geometry', function(helper) {
-  return {
-    type: 'Point',
-    coordinates: [
-      helper.chance.longitude(),
-      helper.chance.latitude()
-    ]
-  };
-});
-dream.customType('properties', function(helper) {
-  var colors = ['red', 'green', 'blue', 'yellow'],
-    city = ['London', 'Mumbai', 'New York'];
-   
-  return {
-    color: helper.oneOf(colors),
-    price: helper.chance.integer({min: 10000, max: 100000}),
-    gender: helper.chance.gender(),
-    available: helper.chance.bool(),
-    address: {
-      street: helper.chance.address(),
-      areaCode: helper.chance.areacode(),
-      city: helper.oneOf(city)
-    }
-  };
-});
-
-function createTestData(count,callback) {
-  dream
-    .schema({
-      id: 'incrementalId',
-      geometry: 'geometry',
-      properties: 'properties'
-    })
-    .generateRnd(count)
-    .output(function (err, features) {
-      testData = { 
-        features: features,
-        stats: {
-          color: getStats(features, 'properties.color'),
-          gender: getStats(features, 'properties.gender'),
-          city: getStats(features, 'properties.address.city'),
-          price: getIntervalVals(features, 'properties.price'),
-          available: getStats(features, 'properties.available')
+function createTestData(count, callback) {
+  var data = [], item;
+  for(var i=0; i<count; i++) {
+    data.push({
+      id: i+1,
+      product: chance.word(),
+      price: chance.natural({min: 10, max: 50}),
+      color: chance.pickone(['red', 'green', 'yellow']),
+      available: chance.bool({likelihood:70}),
+      tags: chance.pickset(
+        ['alpha', 'bravo', 'charlie', 'delta', 'echo'],
+        chance.natural({min: 1, max:4})
+      ),
+      vendor: {
+        name: chance.name(),
+        address: {
+          city: chance.pickone(['London', 'Mumbai', 'New York'])
         }
-      };
-      callback.call(this,testData);
+      }
     });
+  }
+  callback.call(null, data);
 }
-
-function getIntervalVals(features, prop) {
-  debugger;
-  return features.reduce(function(acc, f) {
-    acc.push(valueAt(f, prop));
-    return acc;
-  },[])
-  .sort();
-}
-function getStats(features, prop) {
-  return features.reduce(function(acc,f) {
-    var key = valueAt(f,prop);
-    acc[key] = acc[key] ? acc[key] + 1 : 1;
-    return acc;
-  },{});
-}
-function valueAt(obj,path) {
-  //taken from http://stackoverflow.com/a/6394168/713573
-  function index(prev,cur) { return prev[cur]; }
-  return path.split('.').reduce(index, obj);
-};
 
 module.exports = createTestData;
