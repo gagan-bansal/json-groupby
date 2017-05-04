@@ -11,7 +11,6 @@ function groupBy(items, properties, collect) {
 }
 
 function _groupBy(items, properties) {
-  debugger;
   var group = {};
  	    if (typeof properties[0] === 'string') {
  	      group = groupByCategory(items, properties[0]);
