@@ -33,6 +33,42 @@ var expect = require('chai').expect,
       "product": "av", "price": 39, "color": "green", "available": true,
       "tags": ["bravo"],
       "vendor": {"name": "Rosalie Erickson", "address": {"city": "New York"}}}];
+var vendors = [{
+  id: 1,
+  addresses : [{
+    city: 'a',
+    localities: [
+      {size: "small", zipcode: '12345', storeType: ['electronic', 'food']},
+      {size: "medium", zipcode: '12346', storeType: ['food']}]
+  }, {
+    city: 'b',
+    localities: [
+      {size: "medium", zipcode: '12345', storeType: ['electronic', 'food']},
+      {size: "small", zipcode: '12347', storeType: ['electronic']}]
+  }],
+  details: {
+    name: 'foo', 
+    items: 400, 
+    rating: 'high'}
+}, {
+  id: 2,
+  addresses : [{
+    city: 'a',
+    localities: [
+      {size: "large", zipcode: '12345', storeType: ['apparel', 'furniture']},
+      {size: "small", zipcode: '12346', storeType: ['furniture']}]
+  }, {
+    city: 'b',
+    localities: [
+      {size: "small", zipcode: '12345', storeType: ['food', 'furniture']},
+      {size: "medium", zipcode: '12347', storeType: ['food']}]
+  }],
+  details: {
+    name: 'bar', 
+    items: 500, 
+    rating: 'low'}
+}]
+
 describe('groupBy: ', function() {
 
   it('single property', function() {
@@ -221,4 +257,61 @@ describe('groupBy: ', function() {
       }
     ).to.throw(Error);
   });
+
+  it('path for property lies in object that is in array', function() {
+    // in vendors(array of objects) addresses(array of objects)
+    // localities(array) size(string property of object)  
+    var group = groupBy(vendors, ['addresses.localities.size'], ['id'])
+    expect(group).to.be.an('object')
+    expect(Object.keys(group).length).to.be.equal(3)
+    expect(group).to.have.all.keys(['small', 'medium', 'large'])
+    expect(group).to.be.deep.equal({
+      "small": {id: [1, 2]},
+      "medium": {id: [1, 2]},
+      "large": {id: [2]}
+    })
+  })
+
+  it('path for property those are collction of tags lies in object that is in' 
+    + ' array', function() {
+    // in vendors(array of objects) details(object)
+    // localities(array) storeType(array of string tags)  
+    var group = groupBy(vendors, ['addresses.localities.storeType'], ['id'])
+    expect(group).to.be.an('object')
+    expect(Object.keys(group).length).to.be.equal(4)
+    expect(group).to.have.all.keys(['food', 'furniture','electronic',
+      'apparel'])
+    expect(group).to.be.deep.equal({
+      "food": {id: [1, 2]},
+      "furniture": {id: [2]},
+      "electronic": {id: [1]},
+      "apparel": {id: [2]}
+    })
+  })
+
+  it('path for property lies in object that is in array and collect multiple'
+    + ' properties', function() {
+    // in vendors(array of objects) addresses(array of objects)
+    // localities(array) size(string property of object)  
+    var group = groupBy(
+      vendors, 
+      ['addresses.localities.size'], 
+      ['addresses.localities.zipcode','details.items'])
+    expect(group).to.be.an('object')
+    expect(Object.keys(group).length).to.be.equal(3)
+    expect(group).to.have.all.keys(['small', 'medium', 'large'])
+    expect(group).to.be.deep.equal({
+      small: {
+       'addresses.localities.zipcode': 
+					['12345', '12346', '12347', '12345', '12346', '12347'],
+       'details.items': [ 400, 500]},
+      medium: {
+       'addresses.localities.zipcode': 
+					['12345', '12346', '12347', '12345', '12346', '12347'],
+       'details.items': [400, 500]},
+      large: {
+       'addresses.localities.zipcode': ['12345', '12346', '12347'],
+         'details.items': [500]}
+		})
+  })
 });

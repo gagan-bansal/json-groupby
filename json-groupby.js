@@ -1,6 +1,8 @@
 'use strict';
+var propertyAt = require('./property-value.js')
 
 function groupBy(items, properties, collect) {
+  // TODO argument validation
   if (arguments.length < 2) return arr;
   var groups = _groupBy(items, properties);
   // collect other properties values in array
@@ -12,45 +14,35 @@ function groupBy(items, properties, collect) {
 
 function _groupBy(items, properties) {
   var group = {};
- 	    if (typeof properties[0] === 'string') {
- 	      group = groupByCategory(items, properties[0]);
- 	    } else {
- 	      group = groupByRange(items, properties[0]);
- 	    }
-      properties = properties.slice(1);
-    if (properties.length > 0) {
-      for (var key in group) {
-        group[key] = _groupBy(group[key], properties);
-      }
+ 	if (typeof properties[0] === 'string') {
+ 	  group = groupByCategory(items, properties[0]);
+ 	} else {
+ 	  group = groupByRange(items, properties[0]);
+ 	}
+  properties = properties.slice(1);
+  if (properties.length > 0) {
+    for (var key in group) {
+      group[key] = _groupBy(group[key], properties);
     }
-    return group;
+  }
+  return group;
 }
 
 function groupByCategory(arr, prop) {
-  var isPropertyArray = Array.isArray(valueAt(arr[0], prop));
-  if (isPropertyArray) {
-    return arr.reduce(function(group, f) {
-      var tags = valueAt(f, prop);
-      tags.forEach(function(tag) { 
-        group[tag] = group[tag] || [];
-        group[tag].push(f);
-      });
-      return group;
-    },{});
-  } else {
-    return arr.reduce(function(group, f) {
-      var tag = valueAt(f, prop);
+  return arr.reduce(function(group, item) {
+    var tags = propertyAt(item, prop);
+    tags.forEach(function(tag) { 
       group[tag] = group[tag] || [];
-      group[tag].push(f);
-      return group;
-    },{});
-  }
+      group[tag].push(item);
+    });
+    return group;
+  },{});
 }
 
 function groupByRange(arr, lookup) {
   return arr.reduce(function(group, f) {
     var val, ind, tag;
-    val = valueAt(f, lookup.property);
+    val = propertyAt(f, lookup.property);
     ind = locationOf(val, lookup.intervals);
     if (ind === lookup.intervals.length -1) ind--;
     tag = lookup.labels ? lookup.labels[ind] : ind;
@@ -68,7 +60,7 @@ function collectProperties(groups, properties) {
       collection[key] = groups[key].reduce(function(coll, item) {
         properties.forEach(function(prop) { 
           if (!coll[prop]) coll[prop] = [];
-          coll[prop].push(valueAt(item,prop));
+          coll[prop] = coll[prop].concat(propertyAt(item,prop));
         })
         return coll;
       }, {})
@@ -77,18 +69,6 @@ function collectProperties(groups, properties) {
     }
   }
   return collection;
-}
-
-function valueAt(obj,path) {
-  //taken from http://stackoverflow.com/a/6394168/713573
-  function index(prev,cur, i, arr) { 
-    if (prev.hasOwnProperty(cur)) {
-      return prev[cur]; 
-    } else {
-      throw new Error(arr.slice(0,i+1).join('.') + ' is not a valid property path'); 
-    }
-  }
-  return path.split('.').reduce(index, obj);
 }
 
 // similar to Array.findIndex but more efficient
