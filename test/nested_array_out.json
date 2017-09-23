@@ -1,0 +1,1211 @@
+{
+  "Israeli": [
+    {
+      "doi": "10.1002/net.10039",
+      "title": "Shortest-path network interdiction",
+      "author": [
+        {
+          "given": "Eitan",
+          "family": "Israeli",
+          "affiliation": []
+        },
+        {
+          "given": "R. Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Wood": [
+    {
+      "doi": "10.1002/net.10039",
+      "title": "Shortest-path network interdiction",
+      "author": [
+        {
+          "given": "Eitan",
+          "family": "Israeli",
+          "affiliation": []
+        },
+        {
+          "given": "R. Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/inte.1060.0252",
+      "title": "Defending Critical Infrastructure",
+      "author": [
+        {
+          "given": "Gerald",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "Javier",
+          "family": "Salmerón",
+          "affiliation": []
+        },
+        {
+          "given": "Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/ics.2011.0047",
+      "title": "Solving Defender-Attacker-Defender Models for Infrastructure Defense",
+      "author": [
+        {
+          "given": "David L.",
+          "family": "Alderson",
+          "affiliation": []
+        },
+        {
+          "given": "Gerald G.",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "W. Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "R. Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/educ.1053.0018",
+      "title": "Analyzing the Vulnerability of Critical Infrastructure to Attack and Planning Defenses",
+      "author": [
+        {
+          "given": "Gerald G.",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "W. Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "Javier",
+          "family": "Salmerón",
+          "affiliation": []
+        },
+        {
+          "given": "Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1002/9780470400531.eorms0932",
+      "title": "Bilevel Network Interdiction Models: Formulations and Solutions",
+      "author": [
+        {
+          "given": "R. Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Snyder": [
+    {
+      "doi": "10.1287/educ.1063.0025",
+      "title": "Planning for Disruptions in Supply Chain Networks",
+      "author": [
+        {
+          "given": "Lawrence V.",
+          "family": "Snyder",
+          "affiliation": []
+        },
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Mark S.",
+          "family": "Daskin",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1016/j.trb.2011.05.022",
+      "title": "Reliable logistics networks design with facility disruptions",
+      "author": [
+        {
+          "given": "Peng",
+          "family": "Peng",
+          "affiliation": []
+        },
+        {
+          "given": "Lawrence V.",
+          "family": "Snyder",
+          "affiliation": []
+        },
+        {
+          "given": "Andrew",
+          "family": "Lim",
+          "affiliation": []
+        },
+        {
+          "given": "Zuli",
+          "family": "Liu",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Scaparra": [
+    {
+      "doi": "10.1287/educ.1063.0025",
+      "title": "Planning for Disruptions in Supply Chain Networks",
+      "author": [
+        {
+          "given": "Lawrence V.",
+          "family": "Snyder",
+          "affiliation": []
+        },
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Mark S.",
+          "family": "Daskin",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1016/j.endm.2010.05.075",
+      "title": "On a bi-level formulation to protect uncapacitated p-median systems with facility recovery time and frequent disruptions",
+      "author": [
+        {
+          "given": "Chaya",
+          "family": "Losada",
+          "affiliation": []
+        },
+        {
+          "given": "M. Paola",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1016/j.cor.2006.09.019",
+      "title": "A bilevel mixed-integer program for critical infrastructure protection planning",
+      "author": [
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/trsc.1100.0340",
+      "title": "Optimal Allocation of Protective Resources in Shortest-Path Networks",
+      "author": [
+        {
+          "given": "Paola",
+          "family": "Cappanera",
+          "affiliation": []
+        },
+        {
+          "given": "Maria Paola",
+          "family": "Scaparra",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1111/j.1467-8306.2004.00410.x",
+      "title": "Identifying Critical Infrastructure: The Median and Covering Facility Interdiction Problems",
+      "author": [
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        },
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Richard S.",
+          "family": "Middleton",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Daskin": [
+    {
+      "doi": "10.1287/educ.1063.0025",
+      "title": "Planning for Disruptions in Supply Chain Networks",
+      "author": [
+        {
+          "given": "Lawrence V.",
+          "family": "Snyder",
+          "affiliation": []
+        },
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Mark S.",
+          "family": "Daskin",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Church": [
+    {
+      "doi": "10.1287/educ.1063.0025",
+      "title": "Planning for Disruptions in Supply Chain Networks",
+      "author": [
+        {
+          "given": "Lawrence V.",
+          "family": "Snyder",
+          "affiliation": []
+        },
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Mark S.",
+          "family": "Daskin",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1016/j.endm.2010.05.075",
+      "title": "On a bi-level formulation to protect uncapacitated p-median systems with facility recovery time and frequent disruptions",
+      "author": [
+        {
+          "given": "Chaya",
+          "family": "Losada",
+          "affiliation": []
+        },
+        {
+          "given": "M. Paola",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1016/j.cor.2006.09.019",
+      "title": "A bilevel mixed-integer program for critical infrastructure protection planning",
+      "author": [
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1111/j.1467-8306.2004.00410.x",
+      "title": "Identifying Critical Infrastructure: The Median and Covering Facility Interdiction Problems",
+      "author": [
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        },
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Richard S.",
+          "family": "Middleton",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Brown": [
+    {
+      "doi": "10.1287/inte.1060.0252",
+      "title": "Defending Critical Infrastructure",
+      "author": [
+        {
+          "given": "Gerald",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "Javier",
+          "family": "Salmerón",
+          "affiliation": []
+        },
+        {
+          "given": "Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/ics.2011.0047",
+      "title": "Solving Defender-Attacker-Defender Models for Infrastructure Defense",
+      "author": [
+        {
+          "given": "David L.",
+          "family": "Alderson",
+          "affiliation": []
+        },
+        {
+          "given": "Gerald G.",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "W. Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "R. Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/educ.1053.0018",
+      "title": "Analyzing the Vulnerability of Critical Infrastructure to Attack and Planning Defenses",
+      "author": [
+        {
+          "given": "Gerald G.",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "W. Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "Javier",
+          "family": "Salmerón",
+          "affiliation": []
+        },
+        {
+          "given": "Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Carlyle": [
+    {
+      "doi": "10.1287/inte.1060.0252",
+      "title": "Defending Critical Infrastructure",
+      "author": [
+        {
+          "given": "Gerald",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "Javier",
+          "family": "Salmerón",
+          "affiliation": []
+        },
+        {
+          "given": "Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/ics.2011.0047",
+      "title": "Solving Defender-Attacker-Defender Models for Infrastructure Defense",
+      "author": [
+        {
+          "given": "David L.",
+          "family": "Alderson",
+          "affiliation": []
+        },
+        {
+          "given": "Gerald G.",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "W. Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "R. Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/educ.1053.0018",
+      "title": "Analyzing the Vulnerability of Critical Infrastructure to Attack and Planning Defenses",
+      "author": [
+        {
+          "given": "Gerald G.",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "W. Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "Javier",
+          "family": "Salmerón",
+          "affiliation": []
+        },
+        {
+          "given": "Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Salmerón": [
+    {
+      "doi": "10.1287/inte.1060.0252",
+      "title": "Defending Critical Infrastructure",
+      "author": [
+        {
+          "given": "Gerald",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "Javier",
+          "family": "Salmerón",
+          "affiliation": []
+        },
+        {
+          "given": "Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    },
+    {
+      "doi": "10.1287/educ.1053.0018",
+      "title": "Analyzing the Vulnerability of Critical Infrastructure to Attack and Planning Defenses",
+      "author": [
+        {
+          "given": "Gerald G.",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "W. Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "Javier",
+          "family": "Salmerón",
+          "affiliation": []
+        },
+        {
+          "given": "Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Losada": [
+    {
+      "doi": "10.1016/j.endm.2010.05.075",
+      "title": "On a bi-level formulation to protect uncapacitated p-median systems with facility recovery time and frequent disruptions",
+      "author": [
+        {
+          "given": "Chaya",
+          "family": "Losada",
+          "affiliation": []
+        },
+        {
+          "given": "M. Paola",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Gedik": [
+    {
+      "doi": "10.1016/j.tre.2014.06.017",
+      "title": "Vulnerability assessment and re-routing of freight trains under disruptions: A coal supply chain network application",
+      "author": [
+        {
+          "given": "Ridvan",
+          "family": "Gedik",
+          "affiliation": []
+        },
+        {
+          "given": "Hugh",
+          "family": "Medal",
+          "affiliation": []
+        },
+        {
+          "given": "Chase",
+          "family": "Rainwater",
+          "affiliation": []
+        },
+        {
+          "given": "Ed A.",
+          "family": "Pohl",
+          "affiliation": []
+        },
+        {
+          "given": "Scott J.",
+          "family": "Mason",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Medal": [
+    {
+      "doi": "10.1016/j.tre.2014.06.017",
+      "title": "Vulnerability assessment and re-routing of freight trains under disruptions: A coal supply chain network application",
+      "author": [
+        {
+          "given": "Ridvan",
+          "family": "Gedik",
+          "affiliation": []
+        },
+        {
+          "given": "Hugh",
+          "family": "Medal",
+          "affiliation": []
+        },
+        {
+          "given": "Chase",
+          "family": "Rainwater",
+          "affiliation": []
+        },
+        {
+          "given": "Ed A.",
+          "family": "Pohl",
+          "affiliation": []
+        },
+        {
+          "given": "Scott J.",
+          "family": "Mason",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Rainwater": [
+    {
+      "doi": "10.1016/j.tre.2014.06.017",
+      "title": "Vulnerability assessment and re-routing of freight trains under disruptions: A coal supply chain network application",
+      "author": [
+        {
+          "given": "Ridvan",
+          "family": "Gedik",
+          "affiliation": []
+        },
+        {
+          "given": "Hugh",
+          "family": "Medal",
+          "affiliation": []
+        },
+        {
+          "given": "Chase",
+          "family": "Rainwater",
+          "affiliation": []
+        },
+        {
+          "given": "Ed A.",
+          "family": "Pohl",
+          "affiliation": []
+        },
+        {
+          "given": "Scott J.",
+          "family": "Mason",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Pohl": [
+    {
+      "doi": "10.1016/j.tre.2014.06.017",
+      "title": "Vulnerability assessment and re-routing of freight trains under disruptions: A coal supply chain network application",
+      "author": [
+        {
+          "given": "Ridvan",
+          "family": "Gedik",
+          "affiliation": []
+        },
+        {
+          "given": "Hugh",
+          "family": "Medal",
+          "affiliation": []
+        },
+        {
+          "given": "Chase",
+          "family": "Rainwater",
+          "affiliation": []
+        },
+        {
+          "given": "Ed A.",
+          "family": "Pohl",
+          "affiliation": []
+        },
+        {
+          "given": "Scott J.",
+          "family": "Mason",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Mason": [
+    {
+      "doi": "10.1016/j.tre.2014.06.017",
+      "title": "Vulnerability assessment and re-routing of freight trains under disruptions: A coal supply chain network application",
+      "author": [
+        {
+          "given": "Ridvan",
+          "family": "Gedik",
+          "affiliation": []
+        },
+        {
+          "given": "Hugh",
+          "family": "Medal",
+          "affiliation": []
+        },
+        {
+          "given": "Chase",
+          "family": "Rainwater",
+          "affiliation": []
+        },
+        {
+          "given": "Ed A.",
+          "family": "Pohl",
+          "affiliation": []
+        },
+        {
+          "given": "Scott J.",
+          "family": "Mason",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Alderson": [
+    {
+      "doi": "10.1287/ics.2011.0047",
+      "title": "Solving Defender-Attacker-Defender Models for Infrastructure Defense",
+      "author": [
+        {
+          "given": "David L.",
+          "family": "Alderson",
+          "affiliation": []
+        },
+        {
+          "given": "Gerald G.",
+          "family": "Brown",
+          "affiliation": []
+        },
+        {
+          "given": "W. Matthew",
+          "family": "Carlyle",
+          "affiliation": []
+        },
+        {
+          "given": "R. Kevin",
+          "family": "Wood",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Lou": [
+    {
+      "doi": "10.3141/2234-04",
+      "title": "Defending Transportation Networks Against Random and Targeted Attacks",
+      "author": [
+        {
+          "given": "Yingyan",
+          "family": "Lou",
+          "affiliation": []
+        },
+        {
+          "given": "Lihui",
+          "family": "Zhang",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Zhang": [
+    {
+      "doi": "10.3141/2234-04",
+      "title": "Defending Transportation Networks Against Random and Targeted Attacks",
+      "author": [
+        {
+          "given": "Yingyan",
+          "family": "Lou",
+          "affiliation": []
+        },
+        {
+          "given": "Lihui",
+          "family": "Zhang",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Peng": [
+    {
+      "doi": "10.1016/j.trb.2011.05.022",
+      "title": "Reliable logistics networks design with facility disruptions",
+      "author": [
+        {
+          "given": "Peng",
+          "family": "Peng",
+          "affiliation": []
+        },
+        {
+          "given": "Lawrence V.",
+          "family": "Snyder",
+          "affiliation": []
+        },
+        {
+          "given": "Andrew",
+          "family": "Lim",
+          "affiliation": []
+        },
+        {
+          "given": "Zuli",
+          "family": "Liu",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Lim": [
+    {
+      "doi": "10.1016/j.trb.2011.05.022",
+      "title": "Reliable logistics networks design with facility disruptions",
+      "author": [
+        {
+          "given": "Peng",
+          "family": "Peng",
+          "affiliation": []
+        },
+        {
+          "given": "Lawrence V.",
+          "family": "Snyder",
+          "affiliation": []
+        },
+        {
+          "given": "Andrew",
+          "family": "Lim",
+          "affiliation": []
+        },
+        {
+          "given": "Zuli",
+          "family": "Liu",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Liu": [
+    {
+      "doi": "10.1016/j.trb.2011.05.022",
+      "title": "Reliable logistics networks design with facility disruptions",
+      "author": [
+        {
+          "given": "Peng",
+          "family": "Peng",
+          "affiliation": []
+        },
+        {
+          "given": "Lawrence V.",
+          "family": "Snyder",
+          "affiliation": []
+        },
+        {
+          "given": "Andrew",
+          "family": "Lim",
+          "affiliation": []
+        },
+        {
+          "given": "Zuli",
+          "family": "Liu",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Bayrak": [
+    {
+      "doi": "10.1002/net.20236",
+      "title": "Shortest path network interdiction with asymmetric information",
+      "author": [
+        {
+          "given": "Halil",
+          "family": "Bayrak",
+          "affiliation": []
+        },
+        {
+          "given": "Matthew D.",
+          "family": "Bailey",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Bailey": [
+    {
+      "doi": "10.1002/net.20236",
+      "title": "Shortest path network interdiction with asymmetric information",
+      "author": [
+        {
+          "given": "Halil",
+          "family": "Bayrak",
+          "affiliation": []
+        },
+        {
+          "given": "Matthew D.",
+          "family": "Bailey",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Cappanera": [
+    {
+      "doi": "10.1287/trsc.1100.0340",
+      "title": "Optimal Allocation of Protective Resources in Shortest-Path Networks",
+      "author": [
+        {
+          "given": "Paola",
+          "family": "Cappanera",
+          "affiliation": []
+        },
+        {
+          "given": "Maria Paola",
+          "family": "Scaparra",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Morton": [
+    {
+      "doi": "10.1002/9780470400531.eorms0835",
+      "title": "Stochastic Network Interdiction",
+      "author": [
+        {
+          "given": "David P.",
+          "family": "Morton",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Middleton": [
+    {
+      "doi": "10.1111/j.1467-8306.2004.00410.x",
+      "title": "Identifying Critical Infrastructure: The Median and Covering Facility Interdiction Problems",
+      "author": [
+        {
+          "given": "Richard L.",
+          "family": "Church",
+          "affiliation": []
+        },
+        {
+          "given": "Maria P.",
+          "family": "Scaparra",
+          "affiliation": []
+        },
+        {
+          "given": "Richard S.",
+          "family": "Middleton",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Li": [
+    {
+      "doi": "10.1016/j.cor.2012.11.012",
+      "title": "Reliable facility location design under disruptions",
+      "author": [
+        {
+          "given": "Qingwei",
+          "family": "Li",
+          "affiliation": []
+        },
+        {
+          "given": "Bo",
+          "family": "Zeng",
+          "affiliation": []
+        },
+        {
+          "given": "Alex",
+          "family": "Savachkin",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Zeng": [
+    {
+      "doi": "10.1016/j.cor.2012.11.012",
+      "title": "Reliable facility location design under disruptions",
+      "author": [
+        {
+          "given": "Qingwei",
+          "family": "Li",
+          "affiliation": []
+        },
+        {
+          "given": "Bo",
+          "family": "Zeng",
+          "affiliation": []
+        },
+        {
+          "given": "Alex",
+          "family": "Savachkin",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Savachkin": [
+    {
+      "doi": "10.1016/j.cor.2012.11.012",
+      "title": "Reliable facility location design under disruptions",
+      "author": [
+        {
+          "given": "Qingwei",
+          "family": "Li",
+          "affiliation": []
+        },
+        {
+          "given": "Bo",
+          "family": "Zeng",
+          "affiliation": []
+        },
+        {
+          "given": "Alex",
+          "family": "Savachkin",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Grötschel": [
+    {
+      "doi": "10.1016/S0927-0507(05)80127-6",
+      "title": "Chapter 10 Design of survivable networks",
+      "author": [
+        {
+          "given": "M.",
+          "family": "Grötschel",
+          "affiliation": []
+        },
+        {
+          "given": "C.L.",
+          "family": "Monma",
+          "affiliation": []
+        },
+        {
+          "given": "M.",
+          "family": "Stoer",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Monma": [
+    {
+      "doi": "10.1016/S0927-0507(05)80127-6",
+      "title": "Chapter 10 Design of survivable networks",
+      "author": [
+        {
+          "given": "M.",
+          "family": "Grötschel",
+          "affiliation": []
+        },
+        {
+          "given": "C.L.",
+          "family": "Monma",
+          "affiliation": []
+        },
+        {
+          "given": "M.",
+          "family": "Stoer",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Stoer": [
+    {
+      "doi": "10.1016/S0927-0507(05)80127-6",
+      "title": "Chapter 10 Design of survivable networks",
+      "author": [
+        {
+          "given": "M.",
+          "family": "Grötschel",
+          "affiliation": []
+        },
+        {
+          "given": "C.L.",
+          "family": "Monma",
+          "affiliation": []
+        },
+        {
+          "given": "M.",
+          "family": "Stoer",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Kerivin": [
+    {
+      "doi": "10.1002/net.20072",
+      "title": "Design of Survivable Networks: A survey",
+      "author": [
+        {
+          "given": "Hervé",
+          "family": "Kerivin",
+          "affiliation": []
+        },
+        {
+          "given": "A. Ridha",
+          "family": "Mahjoub",
+          "affiliation": []
+        }
+      ]
+    }
+  ],
+  "Mahjoub": [
+    {
+      "doi": "10.1002/net.20072",
+      "title": "Design of Survivable Networks: A survey",
+      "author": [
+        {
+          "given": "Hervé",
+          "family": "Kerivin",
+          "affiliation": []
+        },
+        {
+          "given": "A. Ridha",
+          "family": "Mahjoub",
+          "affiliation": []
+        }
+      ]
+    }
+  ]
+}
