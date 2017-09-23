@@ -1,5 +1,8 @@
 # json-groupby
-Group array of JOSN objects based on associated properties.
+Group array of JSON objects based on associated properties.
+
+It also groups objects containing [nested arrays](#nested-arrays).
+
 ## installation
 
 ```
@@ -7,6 +10,7 @@ npm install json-groupby
 ```
 
 ## usage
+
 ```javascript
 var groupBy = require('json-groupby')
 var group = groupBy(array, properties [, collect])
@@ -32,8 +36,9 @@ var group = groupBy(array, properties [, collect])
 
 ### examples
 
-##### data set
-````javascript
+#### data set
+
+```javascript
 var products = 
  [{"id": 1,
    "product": "ri", "price": 16, "color": "green", "available": false,
@@ -67,9 +72,12 @@ var products =
    "product": "av", "price": 39, "color": "green", "available": true,
    "tags": ["bravo"],
    "vendor": {"name": "Rosalie Erickson", "address": {"city": "New York"}}}]
+
 ```
 
-##### group by single property
+
+#### group by single property
+
 ```javascript
 groupBy(products, ['color'], ['id'])
 // output is 
@@ -78,7 +86,8 @@ groupBy(products, ['color'], ['id'])
   red: { id: [ 3 ] } }
 ```
 
-##### group by many properties and without collect option
+#### group by many properties and without collect option
+
 ```javascript
 groupBy(products, ['available', 'color', 'vendor.address.city'])
 // output is 
@@ -121,7 +130,8 @@ groupBy(products, ['available', 'color', 'vendor.address.city'])
      ]}}}
 ``` 
 
-##### single deep path property 
+#### single deep path property
+ 
 ```javascript
 groupBy(products, ['vendor.address.city'], ['id'])
 // output is 
@@ -129,7 +139,9 @@ groupBy(products, ['vendor.address.city'], ['id'])
   'New York': { id: [ 3, 5, 6, 8 ] },
   London: { id: [ 4 ] } }
 ```   
-##### group with boolean property
+
+#### group with boolean property
+
 ```javascript
 groupBy(products, ['available'], ['id'])
 // output is 
@@ -137,7 +149,8 @@ groupBy(products, ['available'], ['id'])
   true: { id: [ 3, 5, 6, 8 ] }}
 ```  
 
-##### group by intervals (lookup of intervals) without intervals' name
+#### group by intervals (lookup of intervals) without intervals' name
+
 ```javascript 
 groupBy(
   products, 
@@ -149,7 +162,8 @@ groupBy(
   '2': { id: [ 2, 5 ] } }
 ``` 
 
-##### group by intervals (lookup of intervals) with intervals' lable name 
+#### group by intervals (lookup of intervals) with intervals' lable name 
+
 ```javascript
 groupBy(
   products, 
@@ -163,7 +177,8 @@ groupBy(
  'medium': { id: [ 3, 4, 6, 8 ] },
  'high': { id: [ 2, 5 ] } }
 ```
-##### group with mixed properties lookup and property path 
+#### group with mixed properties lookup and property path 
+
 ```javascript
 groupBy(
   products, 
@@ -188,7 +203,8 @@ groupBy(
     "London":{"id":[4]}}
 ```
 
-##### group by tags that are in array 
+#### group by tags that are in array 
+
 ```javascript
 groupBy(products, ['tags'], ['id'])
 //ouput is
@@ -199,7 +215,8 @@ groupBy(products, ['tags'], ['id'])
   delta: { id: [ 5, 6 ] } }
 ```
 
-##### group and collect many properties
+#### group and collect many properties
+
 ```javascript
 groupBy(
   products, 
@@ -215,6 +232,57 @@ groupBy(
   red: { 'vendor.address.city': [ 'New York' ], available: [ true ] } }
 ```
 
+#### Nested Arrays
+
+Group by property path that lies in nested arrays, in the following example `addresses.localities.size`
+
+```javascript
+var vendors = [{
+  id: 1,
+  addresses : [{
+    city: 'a',
+    localities: [
+      {size: "small", zipcode: '12345', storeType: ['electronic', 'food']},
+      {size: "medium", zipcode: '12346', storeType: ['food']}]
+  }, {
+    city: 'b',
+    localities: [
+      {size: "medium", zipcode: '12345', storeType: ['electronic', 'food']},
+      {size: "small", zipcode: '12347', storeType: ['electronic']}]
+  }],
+  details: {
+    name: 'foo', 
+    items: 400, 
+    rating: 'high'}
+}, {
+  id: 2,
+  addresses : [{
+    city: 'a',
+    localities: [
+      {size: "large", zipcode: '12345', storeType: ['apparel', 'furniture']},
+      {size: "small", zipcode: '12346', storeType: ['furniture']}]
+  }, {
+    city: 'b',
+    localities: [
+      {size: "small", zipcode: '12345', storeType: ['food', 'furniture']},
+      {size: "medium", zipcode: '12347', storeType: ['food']}]
+  }],
+  details: {
+    name: 'bar', 
+    items: 500, 
+    rating: 'low'}
+}]
+
+var group = groupBy(vendors, ['addresses.localities.size'], ['id'])
+
+// output gruop is
+{
+  "small": {id: [1, 2]},
+  "medium": {id: [1, 2]},
+  "large": {id: [2]}
+}
+
+``` 
 ## developing
 Once you run
  
