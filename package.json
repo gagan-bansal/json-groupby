@@ -1,6 +1,6 @@
 {
   "name": "json-groupby",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Group array of json based on associated properties.",
   "main": "json-groupby.js",
   "scripts": {
