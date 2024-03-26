@@ -30,9 +30,9 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
-    "exorcist": "^0.4.0",
-    "mocha": "^2.4.5",
-    "uglify-js": "^2.6.1",
-    "chance": "^1.0.2"
+    "chance": "^1.0.2",
+    "exorcist": "^2.0.0",
+    "mocha": "^10.3.0",
+    "uglify-js": "^2.6.1"
   }
 }
