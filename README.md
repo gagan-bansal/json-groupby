@@ -286,7 +286,7 @@ var group = groupBy(vendors, ['addresses.localities.size'], ['id'])
 ## developing
 Once you run
  
-```npm isntall```
+```npm install```
 
 then for running test 
 
